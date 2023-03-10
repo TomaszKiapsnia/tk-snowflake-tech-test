@@ -1,0 +1,2 @@
+CREATE STREAM IF NOT EXISTS customer_shopping_patterns.raw.str_transactions
+ON TABLE customer_shopping_patterns.raw.transactions;

@@ -73,3 +73,14 @@ This should produce customers, products and transaction data under `./input_data
 Please save Snowflake model code in `snowflake` and infrastructure code in `infra` folder.
 
 Update this README as code evolves.
+
+
+Comments:
+1. Database and schema could be parametrized, at least for {env} for easier migration between environments;
+2. Auto ingestion with stream consumption is created only for fact table. It should be done for dimensions also for full CDC and SCD;
+3. There are only tables in raw schema for dimensions. After implementing proper loading of dim_products and dim_customers these tables should be used from core schema;
+4. There is a dirty view on fact and dimensions. It should be prematerialized and then, using CLONE or SWAP functionality, provided to consumption by downstreams without downtime or compute needed or downstream side;
+5. Tests are on views, common approach with the team should be discussed and some tools used to not maintain execution manually;
+6. No Flyway nor Liquibase configuration. For bigger implementations that would be worth to configure;
+7. No CI/CD nor any gitflow. It works perfectly with point 6. GitHub also helps with secrets (username and password) for connection to Snowflake;
+8. Have a good day :) 
